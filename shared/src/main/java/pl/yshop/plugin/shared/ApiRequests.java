@@ -5,21 +5,24 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import pl.yshop.plugin.shared.objects.CommandEntity;
+import pl.yshop.plugin.shared.objects.Configuration;
+
 import java.io.IOException;
 import java.util.List;
 
 public class ApiRequests {
-    private static final String API_COMMANDS_URL = "http://localhost:3000/shops/%s/payments/commands/%s";
     private OkHttpClient client;
     private Gson gson = new Gson();
     private String apikey;
     private String serverId;
     private String shopId;
+    private String baseUrl;
 
-    public ApiRequests(String apikey, String serverId, String shopId, OkHttpClient client){
-        this.apikey = apikey;
-        this.serverId = serverId;
-        this.shopId = shopId;
+    public ApiRequests(Configuration configuration, OkHttpClient client){
+        this.apikey = configuration.getApikey();
+        this.serverId = configuration.getServerId();
+        this.shopId = configuration.getShopId();
+        this.baseUrl = configuration.getServer() + "shops/%s/payments/commands/%s";
         this.client = client;
     }
 
@@ -38,6 +41,6 @@ public class ApiRequests {
     }
 
     private String buildUrl(){
-        return String.format(API_COMMANDS_URL, this.shopId, this.serverId);
+        return String.format(this.baseUrl, this.shopId, this.serverId);
     }
 }
