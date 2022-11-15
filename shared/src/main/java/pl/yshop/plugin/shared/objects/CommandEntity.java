@@ -1,7 +1,6 @@
 package pl.yshop.plugin.shared.objects;
 
 import lombok.Getter;
-
 import java.util.List;
 
 @Getter

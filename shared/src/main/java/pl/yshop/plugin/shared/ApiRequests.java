@@ -5,9 +5,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import pl.yshop.plugin.shared.objects.CommandEntity;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ApiRequests {
@@ -18,11 +16,11 @@ public class ApiRequests {
     private String serverId;
     private String shopId;
 
-    public ApiRequests(String apikey, String serverId, String shopId){
+    public ApiRequests(String apikey, String serverId, String shopId, OkHttpClient client){
         this.apikey = apikey;
         this.serverId = serverId;
         this.shopId = shopId;
-        this.client = new OkHttpClient();
+        this.client = client;
     }
 
     public List<CommandEntity> getCommandsToExecute(){

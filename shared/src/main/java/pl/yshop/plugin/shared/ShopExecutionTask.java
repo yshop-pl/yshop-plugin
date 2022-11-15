@@ -13,11 +13,11 @@ public abstract class ShopExecutionTask implements Runnable {
     public void run(){
         this.commandsToExecute().forEach(commandEntity -> {
             commandEntity.getCommands().forEach(command -> {
-                if(command != null){
-                    if(commandEntity.isRequire_player_online()){
-
-                    }
+                if(commandEntity.isRequire_player_online() && !this.isPlayerOnline(commandEntity.getPlayer())){
+                    System.out.println("Gracz " + commandEntity.getPlayer() + " jest offline!");
+                    return;
                 }
+                this.executeCommand(command);
             });
         });
     }
