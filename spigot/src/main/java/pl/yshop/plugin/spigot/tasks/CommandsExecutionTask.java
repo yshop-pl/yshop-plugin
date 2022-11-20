@@ -4,8 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import pl.yshop.plugin.shared.ApiRequests;
 import pl.yshop.plugin.shared.ShopExecutionTask;
-import pl.yshop.plugin.shared.objects.CommandEntity;
-import java.util.List;
 
 public class CommandsExecutionTask extends ShopExecutionTask{
     private ApiRequests apiRequests;
@@ -17,9 +15,14 @@ public class CommandsExecutionTask extends ShopExecutionTask{
     }
 
     @Override
-    public List<CommandEntity> commandsToExecute() {
-        return this.apiRequests.getCommandsToExecute();
+    public ApiRequests apiRequests() {
+        return this.apiRequests;
     }
+
+    //    @Override
+//    public List<CommandEntity> commandsToExecute() {
+//        return this.apiRequests.getCommandsToExecute();
+//    }
 
     @Override
     public boolean isPlayerOnline(String nickname) {

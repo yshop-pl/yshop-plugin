@@ -1,0 +1,39 @@
+package pl.yshop.plugin.shared.configuration;
+
+import lombok.Builder;
+import lombok.Getter;
+import pl.yshop.plugin.shared.configuration.annotations.NotEmptyValue;
+import pl.yshop.plugin.shared.exceptions.EmptyFieldInConfigurationException;
+
+import java.lang.reflect.Field;
+
+@Getter
+@Builder
+public class Configuration {
+    @NotEmptyValue(name = "Klucz API")
+    private String apikey;
+
+    @NotEmptyValue(name = "Id sklepu")
+    private String shopId;
+
+    @NotEmptyValue(name = "Id serwera")
+    private String serverId;
+
+    @NotEmptyValue(name = "Adres API")
+    private String server;
+
+    public void validate() throws EmptyFieldInConfigurationException {
+        try {
+            for (Field field : this.getClass().getDeclaredFields()){
+                field.setAccessible(true);
+                if(field.isAnnotationPresent(NotEmptyValue.class)){
+                    if(field.get(this) == null){
+                        throw new EmptyFieldInConfigurationException(field.getAnnotation(NotEmptyValue.class).name(), field.getName());
+                    }
+                }
+            }
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}

@@ -2,10 +2,10 @@ package pl.yshop.plugin.spigot;
 
 import okhttp3.OkHttpClient;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.yshop.plugin.shared.ApiRequests;
-import pl.yshop.plugin.shared.objects.Configuration;
+import pl.yshop.plugin.shared.configuration.Configuration;
+import pl.yshop.plugin.shared.exceptions.EmptyFieldInConfigurationException;
 import pl.yshop.plugin.spigot.tasks.CommandsExecutionTask;
 
 public final class SpigotPlugin extends JavaPlugin {
@@ -20,6 +20,13 @@ public final class SpigotPlugin extends JavaPlugin {
                 .serverId(this.getConfig().getString("serverId"))
                 .shopId(this.getConfig().getString("shopId"))
                 .server(this.getConfig().getString("server")).build();
+
+        try {
+            configuration.validate();
+        }catch (EmptyFieldInConfigurationException exception){
+            this.getLogger().severe(exception.getMessage());
+            Bukkit.getPluginManager().disablePlugin(this);
+        }
 
         this.api = new ApiRequests(configuration, this.httpClient);
         this.getServer().getScheduler().runTaskTimerAsynchronously(this, new CommandsExecutionTask(this, api), checkEvery, checkEvery);
