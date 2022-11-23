@@ -27,7 +27,8 @@ public class Configuration {
             for (Field field : this.getClass().getDeclaredFields()){
                 field.setAccessible(true);
                 if(field.isAnnotationPresent(NotEmptyValue.class)){
-                    if(field.get(this) == null){
+                    String value = field.get(this).toString();
+                    if(value.isEmpty()){
                         throw new EmptyFieldInConfigurationException(field.getAnnotation(NotEmptyValue.class).name(), field.getName());
                     }
                 }

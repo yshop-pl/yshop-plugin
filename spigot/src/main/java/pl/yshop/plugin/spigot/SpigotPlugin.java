@@ -14,6 +14,7 @@ public final class SpigotPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        this.saveDefaultConfig();
         long checkEvery = 30 * 20;
         Configuration configuration = Configuration.builder()
                 .apikey(this.getConfig().getString("apikey"))

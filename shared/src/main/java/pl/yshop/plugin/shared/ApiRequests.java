@@ -30,8 +30,8 @@ public class ApiRequests {
 
     public List<CommandEntity> getCommandsToExecute() throws RequestException{
         Request request = new Request.Builder()
-                .url("https://api-v4.yshop.pl/shops/4/payments/commands/1").method("GET", null)
-                .addHeader("X-API-KEY", "ee")
+                .url(this.buildUrl()).method("GET", null)
+                .addHeader("X-API-KEY", this.apikey)
                 .build();
         try {
             Response response = this.client.newCall(request).execute();
