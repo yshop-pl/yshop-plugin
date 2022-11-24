@@ -3,7 +3,7 @@ package pl.yshop.plugin.spigot;
 import okhttp3.OkHttpClient;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import pl.yshop.plugin.shared.ApiRequests;
+import pl.yshop.plugin.shared.request.ApiRequests;
 import pl.yshop.plugin.shared.configuration.Configuration;
 import pl.yshop.plugin.shared.exceptions.EmptyFieldInConfigurationException;
 import pl.yshop.plugin.spigot.tasks.CommandsExecutionTask;
@@ -19,8 +19,7 @@ public final class SpigotPlugin extends JavaPlugin {
         Configuration configuration = Configuration.builder()
                 .apikey(this.getConfig().getString("apikey"))
                 .serverId(this.getConfig().getString("serverId"))
-                .shopId(this.getConfig().getString("shopId"))
-                .server(this.getConfig().getString("server")).build();
+                .shopId(this.getConfig().getString("shopId")).build();
 
         try {
             configuration.validate();

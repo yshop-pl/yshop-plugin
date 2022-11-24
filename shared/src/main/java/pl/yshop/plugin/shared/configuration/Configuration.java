@@ -19,9 +19,6 @@ public class Configuration {
     @NotEmptyValue(name = "Id serwera")
     private String serverId;
 
-    @NotEmptyValue(name = "Adres API")
-    private String server;
-
     public void validate() throws EmptyFieldInConfigurationException {
         try {
             for (Field field : this.getClass().getDeclaredFields()){

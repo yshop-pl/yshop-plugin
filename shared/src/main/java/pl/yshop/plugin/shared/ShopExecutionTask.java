@@ -1,38 +1,38 @@
 package pl.yshop.plugin.shared;
 
+import pl.yshop.plugin.shared.enums.LogLevel;
 import pl.yshop.plugin.shared.exceptions.RequestException;
 import pl.yshop.plugin.shared.objects.CommandEntity;
+import pl.yshop.plugin.shared.request.ApiRequests;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
 import java.util.List;
 
 public abstract class ShopExecutionTask implements Runnable {
-//    public abstract List<CommandEntity> commandsToExecute();
     public abstract ApiRequests apiRequests();
     public abstract void executeCommand(String command);
     public abstract boolean isPlayerOnline(String nickname);
+    public abstract void log(LogLevel level, String message);
 
     @Override
     public void run(){
-        List<CommandEntity> commandEntities = null;
-
         try {
-            commandEntities = this.apiRequests().getCommandsToExecute();
-        }catch (RequestException exception){
-
-        }
-        if(commandEntities == null) return;
-        commandEntities.forEach(commandEntity -> {
-            commandEntity.getCommands().forEach(command -> {
-                if(commandEntity.isRequire_player_online() && !this.isPlayerOnline(commandEntity.getPlayer())){
-                    System.out.println("Gracz " + commandEntity.getPlayer() + " jest offline!");
-                    return;
+            List<CommandEntity> commandEntities = this.apiRequests().getCommandsToExecute();
+            commandEntities.forEach(commandEntity -> {
+                if(commandEntity.isRequire_player_online() && !this.isPlayerOnline(commandEntity.getPlayer())) return;
+                try {
+                    this.apiRequests().confirmTransaction(commandEntity.getId());
+                    commandEntity.getCommands().forEach(command -> {
+                        this.log(LogLevel.INFO, String.format("Wykonywanie komendy z zamowienia (%s): /%s", commandEntity.getId(), command));
+                        this.executeCommand(command);
+                    });
+                }catch (RequestException exception){
+                    this.log(LogLevel.ERROR, "Nie mozna potwierdzic zamowienia " + commandEntity.getId());
+                    this.log(LogLevel.ERROR, "Blad: " + exception.getMessage());
                 }
-                this.executeCommand(command);
             });
-        });
+        }catch (RequestException exception){
+            this.log(LogLevel.ERROR, "Wystapil blad podczas pobierania listy komend do wykonania!");
+            this.log(LogLevel.ERROR, "Blad: " + exception.getMessage());
+        }
     }
 }

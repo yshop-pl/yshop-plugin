@@ -1,4 +1,4 @@
-name: yShopV4
+name: yShopV4-spigot
 version: '${project.version}'
 main: pl.yshop.plugin.spigot.SpigotPlugin
 api-version: 1.16
