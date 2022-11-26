@@ -97,6 +97,8 @@ $RECYCLE.BIN/
 
 spigot/target/
 shared/target
+distribution/target
+bungee/target
 
 pom.xml.tag
 pom.xml.releaseBackup
