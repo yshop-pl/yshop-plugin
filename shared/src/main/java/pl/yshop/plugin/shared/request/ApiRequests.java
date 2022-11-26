@@ -4,17 +4,17 @@ import com.google.gson.Gson;
 import okhttp3.*;
 import pl.yshop.plugin.shared.exceptions.RequestException;
 import pl.yshop.plugin.shared.objects.CommandEntity;
-import pl.yshop.plugin.shared.configuration.Configuration;
+import pl.yshop.plugin.shared.configuration.PluginConfiguration;
 import pl.yshop.plugin.shared.objects.ErrorEntity;
 import java.util.List;
 
 public class ApiRequests {
     private OkHttpClient client;
     private Gson gson = new Gson();
-    private Configuration configuration;
+    private PluginConfiguration configuration;
     private String baseUrl;
 
-    public ApiRequests(Configuration configuration, OkHttpClient client){
+    public ApiRequests(PluginConfiguration configuration, OkHttpClient client){
         this.configuration = configuration;
         this.baseUrl = "https://api-v4.yshop.pl/shops/%s/payments/commands/%s/";
         this.client = client;

@@ -6,10 +6,12 @@ import pl.yshop.plugin.shared.configuration.annotations.NotEmptyValue;
 import pl.yshop.plugin.shared.exceptions.EmptyFieldInConfigurationException;
 
 import java.lang.reflect.Field;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 
 @Getter
 @Builder
-public class Configuration {
+public class PluginConfiguration {
     @NotEmptyValue(name = "Klucz API")
     private String apikey;
 
@@ -18,6 +20,8 @@ public class Configuration {
 
     @NotEmptyValue(name = "Id serwera")
     private String serverId;
+
+    private final Duration taskInterval = Duration.of(30, ChronoUnit.SECONDS);
 
     public void validate() throws EmptyFieldInConfigurationException {
         try {
