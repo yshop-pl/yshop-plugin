@@ -95,7 +95,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-target/
+spigot/target/
+shared/target
 
 pom.xml.tag
 pom.xml.releaseBackup
