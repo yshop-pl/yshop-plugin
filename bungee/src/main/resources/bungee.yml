@@ -1,0 +1,3 @@
+name: yShopV4-connector
+version: '${project.version}'
+main: pl.yshop.plugin.bungee.BungeePlugin

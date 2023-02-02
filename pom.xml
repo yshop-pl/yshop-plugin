@@ -12,6 +12,8 @@
     <modules>
         <module>shared</module>
         <module>spigot</module>
+        <module>bungee</module>
+        <module>distribution</module>
     </modules>
 
     <properties>
