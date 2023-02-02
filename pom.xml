@@ -12,7 +12,6 @@
     <modules>
         <module>shared</module>
         <module>spigot</module>
-        <module>distribution</module>
     </modules>
 
     <properties>
