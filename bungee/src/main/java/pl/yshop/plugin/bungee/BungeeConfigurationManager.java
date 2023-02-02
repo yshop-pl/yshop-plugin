@@ -30,10 +30,10 @@ public class BungeeConfigurationManager {
         File file = new File(this.plugin.getDataFolder(), FILE_NAME);
 
         if (!file.exists()) {
-            try (InputStream in = this.plugin.getResourceAsStream(FILE_NAME)) {
-                Files.copy(in, file.toPath());
-            } catch (IOException e) {
-                e.printStackTrace();
+            try (InputStream inputStream = this.plugin.getResourceAsStream(FILE_NAME)) {
+                Files.copy(inputStream, file.toPath());
+            } catch (IOException exception) {
+                exception.printStackTrace();
             }
         }
     }

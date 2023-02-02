@@ -1,3 +1,6 @@
-name: yShopv4-bungee
+name: yShopV4-connector
 version: '${project.version}'
 main: pl.yshop.plugin.bungee.BungeePlugin
+description: Plugin for communication with yshop.pl
+website: https://yshop.pl
+author: 'yCode'

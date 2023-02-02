@@ -5,3 +5,8 @@ Plugin for connecting yshop.pl to minecraft server
 - [X] Spigot support
 - [X] Bungee support
 - [ ] Velocity support
+
+### Compilation
+```bash
+mvn clean package
+```

@@ -4,9 +4,9 @@ import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
 import okhttp3.OkHttpClient;
 import pl.yshop.plugin.bungee.tasks.CommandsExecutionTask;
+import pl.yshop.plugin.shared.ApiRequests;
 import pl.yshop.plugin.shared.configuration.PluginConfiguration;
 import pl.yshop.plugin.shared.exceptions.EmptyFieldInConfigurationException;
-import pl.yshop.plugin.shared.request.ApiRequests;
 
 import java.util.concurrent.TimeUnit;
 

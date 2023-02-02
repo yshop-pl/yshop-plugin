@@ -1,6 +1,6 @@
-name: yShopV4-spigot
-version: '${project.version}'
+name: yShopV4-connector
+version: '1.2'
 main: pl.yshop.plugin.spigot.SpigotPlugin
-api-version: 1.16
 description: Plugin for communication with yshop.pl
 website: https://yshop.pl
+author: 'yCode'

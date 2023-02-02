@@ -1,11 +1,11 @@
 package pl.yshop.plugin.bungee.tasks;
 
 import net.md_5.bungee.api.plugin.Plugin;
-import pl.yshop.plugin.shared.ShopExecutionTask;
+import pl.yshop.plugin.shared.ApiRequests;
 import pl.yshop.plugin.shared.enums.LogLevel;
-import pl.yshop.plugin.shared.request.ApiRequests;
+import pl.yshop.plugin.shared.tasks.ExecuteCommandsTask;
 
-public class CommandsExecutionTask extends ShopExecutionTask {
+public class CommandsExecutionTask extends ExecuteCommandsTask {
     private ApiRequests apiRequests;
     private Plugin plugin;
 
