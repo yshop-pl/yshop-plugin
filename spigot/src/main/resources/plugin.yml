@@ -1,3 +1,6 @@
 name: yShopV4-connector
-version: '${project.version}'
+version: '1.2'
 main: pl.yshop.plugin.spigot.SpigotPlugin
+description: Plugin for communication with yshop.pl
+website: https://yshop.pl
+author: 'yCode'

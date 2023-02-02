@@ -1,8 +1,8 @@
 package pl.yshop.plugin.shared.tasks;
 
-import jdk.jfr.internal.LogLevel;
 import pl.yshop.plugin.shared.ApiRequests;
 import pl.yshop.plugin.shared.entities.CommandEntity;
+import pl.yshop.plugin.shared.enums.LogLevel;
 import pl.yshop.plugin.shared.exceptions.RequestException;
 
 import java.util.List;
