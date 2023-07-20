@@ -16,6 +16,7 @@ public class ConfigLoader {
 
     public void copyConfig(String resourceName) {
         final Path resourcePath = this.dataDirectory.resolve(resourceName);
+        if (Files.exists(resourcePath)) return;
         try (final InputStream in = this.loadingClass.getClassLoader().getResourceAsStream(resourceName)) {
             Files.copy(Objects.requireNonNull(in), resourcePath);
         } catch (final Exception exception) {
