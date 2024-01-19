@@ -1,6 +1,7 @@
 package pl.yshop.plugin.velocity.tasks;
 
 import com.velocitypowered.api.proxy.ProxyServer;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.slf4j.Logger;
 import pl.yshop.plugin.shared.ApiRequests;
 import pl.yshop.plugin.shared.enums.LogLevel;
@@ -25,6 +26,13 @@ public class CommandsExecutionTask extends ExecuteCommandsTask {
     @Override
     public void executeCommand(String command) {
         this.proxyServer.getCommandManager().executeAsync(this.proxyServer.getConsoleCommandSource(), command);
+    }
+
+    @Override
+    public void announce(String message) {
+        this.proxyServer.getAllPlayers().forEach(player -> {
+            player.sendMessage(MiniMessage.miniMessage().deserialize(message));
+        });
     }
 
     @Override

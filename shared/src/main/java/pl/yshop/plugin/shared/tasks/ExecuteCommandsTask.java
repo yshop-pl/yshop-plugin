@@ -10,6 +10,7 @@ import java.util.List;
 public abstract class ExecuteCommandsTask implements Runnable {
     public abstract ApiRequests apiRequests();
     public abstract void executeCommand(String command);
+    public abstract void announce(String message);
     public abstract boolean isPlayerOnline(String nickname);
     public abstract void log(LogLevel level, String message);
 
@@ -22,6 +23,10 @@ public abstract class ExecuteCommandsTask implements Runnable {
                 try {
                     this.apiRequests().confirmTransaction(commandEntity.getId());
                     commandEntity.getCommands().forEach(command -> {
+                        if(command.startsWith("announce")) {
+                            this.announce(command.replaceFirst("announce",""));
+                            return;
+                        }
                         this.log(LogLevel.INFO, String.format("Wykonywanie komendy z zamowienia (%s): /%s", commandEntity.getId(), command));
                         this.executeCommand(command);
                     });

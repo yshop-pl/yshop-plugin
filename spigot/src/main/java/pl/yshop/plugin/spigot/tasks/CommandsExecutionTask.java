@@ -43,4 +43,11 @@ public class CommandsExecutionTask extends ExecuteCommandsTask {
     public void executeCommand(String command) {
         this.plugin.getServer().getScheduler().runTask(this.plugin, () -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command));
     }
+
+    @Override
+    public void announce(String message) {
+        this.plugin.getServer().getOnlinePlayers().forEach(player -> {
+            player.sendMessage(message);
+        });
+    }
 }
